@@ -1,25 +1,28 @@
 <%- layout("./layouts/head.ejs") -%>
 <body>
   <div class="form-container">
-    <form class="new-form" action="/listings" method="post">
+    <form class="new-form" action="/listings/<%=existing_listing.id%>?_method=PUT" method="post">
       <div class="new-form-inner">
         <h1>Create New Listings</h1>
         <label for="listing[title]">Title</label>
         <input
           name="listing[title]"
+          value="<%=existing_listing.title%>"
           placeholder="Give title to your property"
           required="true"
         />
         <br />
         <label for="lisitng[Description]">Describe your property</label>
-        <textarea
-          name="listing[Description]"
-          placeholder="Decription"
-          rows="4"
-        ></textarea>
+        <textarea name="listing[Description]" placeholder="Decription" rows="4">
+<%=existing_listing.description%></textarea
+        >
         <br />
         <label for="lisitng[image]">Image</label>
-        <input name="listing[image]" placeholder="Enter Image url" />
+        <input
+          name="listing[image]"
+          placeholder="Enter Image url"
+          value="<%=existing_listing.image%>"
+        />
         <br />
         <div class="price-contry">
           <div>
@@ -32,10 +35,18 @@
           </div>
           <div>
             <div>
-              <input name="listing[price]" placeholder="Price" />
+              <input
+                name="listing[price]"
+                placeholder="Price"
+                value="<%=existing_listing.price%>"
+              />
             </div>
             <div>
-              <input name="listing[country]" placeholder="e.g India" />
+              <input
+                name="listing[country]"
+                value="<%=existing_listing.country%>"
+                placeholder="e.g India"
+              />
             </div>
           </div>
         </div>
@@ -45,6 +56,7 @@
           type="text"
           name="listing[location]"
           placeholder="eg. Belapur Navi Mumbai"
+          value="<%=existing_listing.location%>"
         />
         <br />
 
@@ -53,3 +65,5 @@
     </form>
   </div>
 </body>
+
+

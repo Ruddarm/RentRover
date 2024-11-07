@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RentRover</title>
-</head>
+<%- layout("./layouts/head.ejs") -%>
 <body>
-
-    <h1>Welcome To RentRover</h1>
-    <form action="/listings/new" method="get" >
-        <input type="submit" value="Create New Listing">
-    </form>
+  <h1>All Listings</h1>
+  <div class="listing-container">
     <% for(listing of allLisitings) {%>
-        <a href="listings/<%=listing._id%>"><%=listing.title%></a>
-        <br>
+    <a href="listings/<%=listing._id%>">
+      <div class="listCard">
+        <div class="list-img">
+          <img src="<%=listing.image%>" alt="" srcset="" />
+        </div>
+        <div class="list-details">
+          <h3><%=listing.title%></h3>
+        </div>
+        <div class="list-desc">
+          <span><%=listing.description%></span>
+        </div>
+      </div>
+    </a>
     <% } %>
+  </div>
 </body>
-</html>
