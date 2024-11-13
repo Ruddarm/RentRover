@@ -17,6 +17,11 @@
     "ejs-mate": "^4.0.0",
     "express": "^4.21.1",
     "method-override": "^3.0.0",
-    "mongoose": "^8.8.0"
+    "mongoose": "^8.8.0",
+    "rentrover": "file:"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/method-override": "^0.0.35"
   }
 }

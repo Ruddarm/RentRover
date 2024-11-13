@@ -424,3 +424,15 @@ padding: 2rem;
     
 }
 
+
+/* Error  */
+.errorContainer{
+    width: auto;
+    height: auto;
+    background-color: rgb(245,0,0,0.1);
+    border: 1px solid red;
+    text-align: center;
+    margin: 5rem 5rem;
+    border-radius: 10px;
+    vertical-align: center;
+}

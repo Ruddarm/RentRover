@@ -10,7 +10,7 @@ const listingSchem = mongoose.Schema({
         ? "https://images.unsplash.com/photo-1568605114967-8130f3a36994?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb"
         : v,
   },
-  price: { type: String, required: true },
+  price: { type: Number, required: true },
   location: String,
   contry: String,
 });
