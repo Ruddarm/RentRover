@@ -1,55 +1,61 @@
 <%- layout("./layouts/head.ejs") -%>
-<body>
-  <div class="form-container">
-    <form class="new-form" action="/listings" method="post">
-      <div class="new-form-inner">
-        <h1>Create New Listings</h1>
-        <label for="listing[title]">Title</label>
-        <input
-          name="listing[title]"
-          placeholder="Give title to your property"
-          required="true"
-        />
-        <br />
-        <label for="lisitng[Description]">Describe your property</label>
-        <textarea
-          name="listing[description]"
-          placeholder="Decription"
-          rows="4"
-        ></textarea>
-        <br />
-        <label for="lisitng[image]">Image</label>
-        <input name="listing[image]" placeholder="Enter Image url" />
-        <br />
-        <div class="price-contry">
+<div class="form-container">
+  <form id="listingFrom" class="new-form" action="/listings" method="post">
+    <div class="new-form-inner">
+      <h1>Create New Listings</h1>
+      <label for="listing[title]">Title</label>
+      <input name="listing[title]" placeholder="Give title to your property" />
+      <p class="form-error-msg">Title is must required</p>
+      <br />
+      <label for="lisitng[Description]">Describe your property</label>
+      <textarea
+        name="listing[description]"
+        placeholder="Decription"
+        rows="4"
+      ></textarea>
+      <p class="form-error-msg">Please Describe you Property in short</p>
+      <br />
+      <label for="lisitng[image]">Image</label>
+      <input name="listing[image]" placeholder="Enter Image url" />
+      <br />
+      <div class="price-contry">
+        <div>
           <div>
-            <div>
-              <label for="listing[price]">Price</label>
-            </div>
-            <div>
-              <label>Country</label>
+            <label for="listing[price]">Price</label>
+          </div>
+          <div>
+            <label>Country</label>
+          </div>
+        </div>
+        <div>
+          <div>
+            <div style="display: block">
+              <input name="listing[price]" placeholder="Price" />
+              <p class="form-error-msg">Price is required</p>
             </div>
           </div>
           <div>
-            <div>
-              <input name="listing[price]" placeholder="Price" />
-            </div>
-            <div>
+            <div style="display: block">
               <input name="listing[country]" placeholder="e.g India" />
+              <p class="form-error-msg">Country is required</p>
             </div>
           </div>
         </div>
-        <br />
-        <label>Location</label>
-        <input
-          type="text"
-          name="listing[location]"
-          placeholder="eg. Belapur Navi Mumbai"
-        />
-        <br />
-
-        <input type="submit" value="Save" />
       </div>
-    </form>
-  </div>
-</body>
+      <br />
+      <label>Location</label>
+      <input
+        type="text"
+        name="listing[location]"
+        placeholder="eg. Belapur Navi Mumbai"
+      />
+      <p class="form-error-msg">Location is required</p>
+      <br />
+
+      <input type="submit" value="Save" />
+    </div>
+  </form>
+  <script src="/Js/formvalidate.js"></script>
+
+  <!-- <h1>hello</h1> -->
+</div>

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const review = require("./review");
 const listingSchem = mongoose.Schema({
   title: { type: String, required: true },
   description: String,
@@ -13,6 +14,9 @@ const listingSchem = mongoose.Schema({
   price: { type: Number, required: true },
   location: String,
   contry: String,
+  review:[{
+    review_id: mongoose.Types.ObjectId
+  }]
 });
 const Lisiting = mongoose.model("Listing", listingSchem);
 module.exports = Lisiting;

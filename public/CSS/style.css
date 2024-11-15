@@ -274,10 +274,10 @@ padding: 2rem;
 
 /* Show lisitng */
 .list-Container{
-    margin: 1rem;
+    margin: 1rem 1rem;
     box-sizing: border-box;
     display: flex;
-    width: calc(100vw - 1rem);
+    width: calc(100vw - 3rem);
     padding: 2rem;
     height: 100%;
     background-color: whitesmoke;
@@ -308,7 +308,8 @@ padding: 2rem;
 .btn{
     display: flex;
 }
-.btn  button,input[type="submit"]{
+.btn  button,input[type="submit"]
+{
     border: none;
     width: 6rem;
     height: 2.5rem;
@@ -438,3 +439,54 @@ padding: 2rem;
 }
 
 /* Form Validation  */
+.warn-border{
+    outline: 1px solid red !important;
+    border: 1px solid red !important;
+}
+.success-border{
+    border: 1.5px solid  green !important;
+    outline: 1px solid green !important;
+}
+.form-error-msg{
+    color: red;
+    font-size: 1rem;
+    display:none;
+    margin: 0;
+    font-family:"sans-serif";
+    padding-left:0.1rem;
+}
+.display{
+    display: block !important;
+}
+
+/* Review Desgin */
+.review-Container{
+    margin: 1rem 1rem;
+    width: calc(100vw - 4rem);
+    margin: auto;
+    /* background-color: red; */
+    padding: 0 1rem;
+}
+.review-form{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+}
+.review-form input{
+    width: 50%;
+    display: block;
+}
+.review-form-container{
+    /* background-color: blue; */
+    padding: 0 3rem;
+}
+#createReviewBtn{
+    width: 5rem;
+    background-color: black;
+    height: 2rem;
+    margin: 1rem;
+    align-self: center;
+}
