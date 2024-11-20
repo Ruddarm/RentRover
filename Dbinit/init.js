@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Listing = require("../models/listing");
 const data = require("./sampleData");
-const mongurl = "mongodb://127.0.0.1:27017/rentrover";
+const mongurl = "mongodb+srv://ruddarmmaurya:5mOPemsWf7p3Xx5j@genaidashboard.sarlo.mongodb.net/bvpgdggenai?retryWrites=true&w=majority&appName=rentrover";
 
 async function main() {
   await mongoose.connect(mongurl);

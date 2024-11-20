@@ -6,7 +6,7 @@ const serverError = require("./utils/serverError");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const port = 8080;
-const mongurl = "mongodb://127.0.0.1:27017/rentrover";
+const mongurl = "mongodb+srv://ruddarmmaurya:5mOPemsWf7p3Xx5j@genaidashboard.sarlo.mongodb.net/bvpgdggenai?retryWrites=true&w=majority&appName=rentrover";
 const Listingroute = require("./Routes/listingRoute");
 const ReviewRouter = require("./Routes/reviewRoute");
 //Connecting with database
