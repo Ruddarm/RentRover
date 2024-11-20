@@ -23,11 +23,11 @@ const listingSchema = mongoose.Schema({
 });
 
 //Creating a middle ware for post delete
-listingSchema.post("FindOneAndDelete", async (listing) => {
+listingSchema.post("findOneAndDelete", async (listing) => {
   console.log("Calling post middle ware")
   if (listing) {
     let res = await Review.deleteMany({
-      reviews: { $in: listingSchema.reviews },
+      _id: { $in: listing.reviews },
     });
     console.log(res);
   }
