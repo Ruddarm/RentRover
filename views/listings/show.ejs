@@ -1,5 +1,5 @@
 <% layout("./layouts/head.ejs") -%>
-<body>
+<!-- <body> -->
   <div class="list-Container">
     <div class="list-img-box">
       <img src="<%=listing.image%>" alt="" srcset="" />
@@ -22,11 +22,12 @@
   <hr />
   <div class="review-Container">
     <div class="review-form-container">
-      <form class="review-form" method="post" action="/listings/<%=listing._id%>/review">
+      <form id="reviewFrom" class="review-form" method="post" action="/listings/<%=listing._id%>/review">
         <h2>Leave a Review</h2>
         <input name="review[rating]" type="range" min="1" max="5"/>
         <label>Comment</label>
         <textarea name="review[comment]" rows="7" cols="40"></textarea>
+        <p class="form-error-msg">Country is required</p>
         <input  id="createReviewBtn" class="btn " type="submit" />
       </form>
     </div>
@@ -42,7 +43,8 @@
       <%}%>
     </div>
   </div>
-</body>
+  <script src="/Js/reviewValidateor.js"></script>
+<!-- </body> -->
 <!-- <ul>
   <li><%=listing.title%></li>
   <li><%=listing.description%></li>
