@@ -1,42 +1,41 @@
 const form = document.querySelector("#listingFrom");
-console.log(form);
-Array.from(form).forEach((element)=>{
-    // console.dir(element.value.trim())
-    element.addEventListener('input', function () {
-        if (this.tagName === 'INPUT' || this.tagName === 'TEXTAREA') {
-            if (this.value.trim() !== "") {
-                console.log(this.nextElementSibling);
-                this.classList.add('success-border');
-                this.classList.remove('warn-border');
-                this.nextElementSibling.classList.remove("display");
 
-            } else {
-                this.classList.remove('success-border');
-                this.nextElementSibling.classList.add("display");
-
-                this.classList.add('warn-border'); // Add warn-border when input is empty
-            }
+const validateField = (field) => {
+    if (field.tagName === 'INPUT' || field.tagName === 'TEXTAREA' || field.tagName === 'SELECT') {
+        const isValid = field.value.trim() !== "";
+        field.classList.toggle('success-border', isValid);
+        field.classList.toggle('warn-border', !isValid);
+        if (field.nextElementSibling) {
+            field.nextElementSibling.classList.toggle("display", !isValid);
         }
-    });
-})
-
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-  Array.from(form.elements).forEach((element) => {
-    if (
-      element.tagName === "INPUT" ||
-      element.tagName === "TEXTAREA" ||
-      element.tagName === "SELECT"
-    ) {
-        // console.log(element)
-      if (element.value.trim() === "") {
-        element.classList.add("warn-border");
-        element.nextElementSibling.classList.add("display");
-      }else{
-         element.classList.remove("warn-border")
-         element.nextElementSibling.classList.remove("display");
-
-      }
+        return isValid;
     }
-  });
+    return true; // Non-input fields are always valid
+};
+
+// Real-time validation
+form.addEventListener('input', (event) => {
+    const field = event.target;
+    validateField(field);
+});
+
+// Change event for <select>
+form.addEventListener('change', (event) => {
+    const field = event.target;
+    validateField(field);
+});
+
+// Submit validation
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let isFormValid = true;
+
+    Array.from(form.elements).forEach((element) => {
+        const isValid = validateField(element);
+        if (!isValid) isFormValid = false;
+    });
+
+    if (isFormValid) {
+        form.submit(); // Programmatically submit the form
+    }
 });

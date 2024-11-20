@@ -331,99 +331,7 @@ padding: 2rem;
 #btn-delete{
     background-color: red;
 }
-
-
-/* media querryies */
-/* phone */
-@media (min-width:200px) and (max-width:600px) {
-    .listing-container{
-        grid-template-columns: repeat(1,1fr);
-    }
-    .navbar-contianer{
-        width: 100vw;
-        overflow: hidden;
-        flex-direction: column;
-    }
-    .navbar-contianer ul{
-        padding: 0;
-        align-items: center;
-        flex-direction: column;
-    }
-    .navbar-contianer ul li{
-        border: none;
-    }
-    
-    #logobox{
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        border: none;
-        
-        /* background-color:beige; */
-    }
-    #logobox a{
-    
-        text-decoration: none;
-        font-size: 1.5rem;
-        color: var(--title-color);
-        font-weight: bolder;
-        display: inline-flex;
-        align-items: flex-end;
-        vertical-align: baseline;
-    
-    }
-    #logobox img{
-        width: 1.5rem;
-        height: auto;
-        margin-right: 0.5rem;
-    }
-    #navOption{
-        font-size:1rem;
-    }
-    .nav-option-mobile{
-        display: flex;
-        
-    }
-    
-}
-/* tablt */
-@media (min-width:600px) and (max-width:900px) {
-    .listing-container{
-        grid-template-columns: repeat(2,1fr);
-        padding: 1rem;
-    }
-}
-
-/* //for both */
-@media (min-width:200px) and (max-width:1000px) {
-    .form-container{
-        /* background-color: red; */
-
-    }
-    .new-form{
-        padding: 1rem;
-    }
-    .new-form-inner{
-        width: 100%;
-        padding: 0.5rem 1rem;
-    }
-    .list-Container{
-        width: 100vw;
-        flex-direction: column;
-        margin: 0;
-    }
-    .list-img-box{
-        padding: 1rem;
-        width: 100%;
-    }
-    .list-img-box img{
-        width: 100%;
-    }
-    
-    
-
-    
-}
+/* Reviews Styling  */
 
 
 /* Error  */
@@ -487,6 +395,134 @@ padding: 2rem;
     width: 5rem;
     background-color: black;
     height: 2rem;
+    /* color: white !important; */
     margin: 1rem;
     align-self: center;
+}
+.review-card-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 0 3rem;
+    font-size: 1.2rem;
+    /* background-color: blue; */
+    flex-wrap: wrap;
+}
+.review-card{
+    /* background-color: red; */
+    margin: 0.3rem;
+
+    padding: 0.5rem 1rem;
+    width: calc(50% - 0.6rem);
+    border: 1px solid black;
+    border-radius: 4px;
+}
+.review-card h2, p{
+    margin: 0;
+    padding: 0.4rem;
+}
+
+
+/* media querryies */
+/* phone */
+@media (min-width:200px) and (max-width:600px) {
+    .listing-container{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .navbar-contianer{
+        width: 100vw;
+        overflow: hidden;
+        flex-direction: column;
+    }
+    .navbar-contianer ul{
+        padding: 0;
+        align-items: center;
+        flex-direction: column;
+    }
+    .navbar-contianer ul li{
+        border: none;
+    }
+    
+    #logobox{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border: none;
+        
+        /* background-color:beige; */
+    }
+    #logobox a{
+    
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: var(--title-color);
+        font-weight: bolder;
+        display: inline-flex;
+        align-items: flex-end;
+        vertical-align: baseline;
+    
+    }
+    #logobox img{
+        width: 1.5rem;
+        height: auto;
+        margin-right: 0.5rem;
+    }
+    #navOption{
+        font-size:1rem;
+    }
+    .nav-option-mobile{
+        display: flex;
+        
+    }
+    .review-card{
+        width: 100%;
+    }
+    .review-Container{
+        width: 100%;
+        padding: 0.2rem;
+    }
+    .review-card-container{
+        padding: 1rem;
+    }
+    .review-form-container{
+        /* background-color: blue; */
+        padding: 0 1rem;
+    }
+    
+}
+/* tablt */
+@media (min-width:600px) and (max-width:900px) {
+    .listing-container{
+        grid-template-columns: repeat(2,1fr);
+        padding: 1rem;
+    }
+}
+
+/* //for both */
+@media (min-width:200px) and (max-width:1000px) {
+    .form-container{
+        /* background-color: red; */
+
+    }
+    .new-form{
+        padding: 1rem;
+    }
+    .new-form-inner{
+        width: 100%;
+        padding: 0.5rem 1rem;
+    }
+    .list-Container{
+        width: 100vw;
+        flex-direction: column;
+        margin: 0;
+    }
+    .list-img-box{
+        padding: 1rem;
+        width: 100%;
+    }
+    .list-img-box img{
+        width: 100%;
+    }
+    
 }

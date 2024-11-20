@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const review = require("./review");
-const listingSchem = mongoose.Schema({
+const Review = require("./review");
+const listingSchema = mongoose.Schema({
   title: { type: String, required: true },
   description: String,
   image: {
@@ -14,9 +14,23 @@ const listingSchem = mongoose.Schema({
   price: { type: Number, required: true },
   location: String,
   contry: String,
-  review:[{
-    review_id: mongoose.Types.ObjectId
-  }]
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "reviews",
+    },
+  ],
 });
-const Lisiting = mongoose.model("Listing", listingSchem);
+
+//Creating a middle ware for post delete
+listingSchema.post("FindOneAndDelete", async (listing) => {
+  console.log("Calling post middle ware")
+  if (listing) {
+    let res = await Review.deleteMany({
+      reviews: { $in: listingSchema.reviews },
+    });
+    console.log(res);
+  }
+});
+const Lisiting = mongoose.model("Listing", listingSchema);
 module.exports = Lisiting;

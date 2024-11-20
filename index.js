@@ -11,9 +11,9 @@ const webError = require("./webError");
 const { stat } = require("fs");
 const port = 8080;
 const mongurl = "mongodb://127.0.0.1:27017/rentrover";
-
+const ReviewModel = require("./models/review");
+const { reviewSchema } = require("./schemaValidation");
 //Connecting with database
-console.log("join url ", path.join(__dirname, "views"));
 // C:\Users\Ruddarm\OneDrive\RentRover\RentRover\views\listings
 async function main() {
   await mongoose.connect(mongurl);
@@ -37,6 +37,20 @@ app.use(express.static(path.join(__dirname, "public")));
 app.listen(port, () => {
   console.log(`Listining on ${port}`);
 });
+
+//Schema Validaitons
+const validateReview = (req, res, next) => {
+  let { error } = reviewSchema.validate(req.body);
+  if (error) {
+    let errMsg = error.details.map((el) => el.message).join(",");
+    console.log("gadbadhogay");
+    throw new serverError(400, errMsg);
+  } else {
+    console.log("sahi hai review");
+    next();
+  }
+};
+
 //Home route
 app.get("/", (req, res) => {
   res.redirect("/listings");
@@ -79,13 +93,9 @@ app.post(
 app.get(
   "/listings/:id",
   wrapAsync(async (req, res) => {
-    // try {
     let { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs", { listing });
-    // } catch (e) {
-    // throw new webError(501, e.messasge);
-    // }
   })
 );
 
@@ -112,15 +122,42 @@ app.delete(
     res.redirect("/listings");
   })
 );
+//Create review
+app.post(
+  "/listings/:id/review",
+  validateReview,
+  wrapAsync(async (req, res, next) => {
+    let { review } = req.body;
+
+    let lisitng = await Listing.findById(req.params.id);
+    console.log(lisitng);
+    let newReview = new ReviewModel(review);
+    lisitng.reviews.push(newReview);
+    let result = await newReview.save();
+    await lisitng.save();
+    res.redirect(`/listings/${lisitng._id}`);
+  })
+);
+
+app.delete(
+  "/listings/:id/review/:reviewId",
+  wrapAsync(async (req, res, next) => {
+    let {id,reviewId} = req.params;
+    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
+    await ReviewModel.findByIdAndDelete(reviewId);
+    res.redirect(`/listings/${id}`);
+  })
+);
 
 //Handel invalid route
 
 app.all("*", (req, res, next) => {
   next(new serverError(404, "Page not Found"));
 });
+
 app.use((err, req, res, next) => {
   let { status = 404, message = "Some thinng went wrong" } = err;
-  res.render("listings/error.ejs",{err
-    
-  })
+  res.render("listings/error.ejs", { err });
 });
+
+//Handel review model
