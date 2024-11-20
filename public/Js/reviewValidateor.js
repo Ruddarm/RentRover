@@ -1,50 +1,37 @@
 const ReviewForm = document.querySelector("#reviewFrom");
 
-
+// Field validation function
 const validateField = (field) => {
-  if (
-    field.tagName === "TEXTAREA"
-  ) {
+  if (field.tagName === "TEXTAREA") {
     const isValid = field.value.trim() !== "";
     field.classList.toggle("success-border", isValid);
     field.classList.toggle("warn-border", !isValid);
     if (field.nextElementSibling) {
-      field.nextElementSibling.classList.toggle("display", isValid);
+      field.nextElementSibling.classList.toggle("display", !isValid);
     }
     return isValid;
   }
-  return true; // Non-input fields are always valid
+  return true; // Non-TEXTAREA fields are always valid for now
 };
 
-Array.from(ReviewForm.elements).forEach((element) => {
-  const isValid = validateField(element);
-  if (!isValid) isFormValid = false;
-});
-
-if (isFormValid) {
-  ReviewForm.submit(); // Programmatically submit the form
-}
 // Real-time validation
 ReviewForm.addEventListener("input", (event) => {
-  const field = event.target;
-  validateField(field);
+  validateField(event.target);
 });
 
-// // Change event for <select>
-// ReviewForm.addEventListener("change", (event) => {
-//   const field = event.target;
-//   validateField(field);
-// });
-
+// Final validation and submit handler
 ReviewForm.addEventListener("submit", (e) => {
   e.preventDefault();
   let isFormValid = true;
+
+  // Validate all fields
   Array.from(ReviewForm.elements).forEach((element) => {
     const isValid = validateField(element);
     if (!isValid) isFormValid = false;
   });
 
+  // Submit if valid
   if (isFormValid) {
-    form.submit(); // Programmatically submit the form
+    ReviewForm.submit(); // Programmatically submit the form
   }
 });
