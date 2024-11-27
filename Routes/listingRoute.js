@@ -1,5 +1,5 @@
 const express = require("express");
-const Listing = require("../models/listing");
+const Listing = require("../models/Lisitings/listing");
 const wrapAsync = require("../utils/wrapAsync");
 const { listingSchema } = require("../schemaValidation");
 
@@ -13,9 +13,8 @@ const validateListing = (req, res, next) => {
     next();
   }
 };
-route.get("/", async (req, res) => {
+route.route("/").get(async (req, res) => {
   const allLisitings = await Listing.find();
-
   res.render("listings/index.ejs", { allLisitings });
 });
 //create route

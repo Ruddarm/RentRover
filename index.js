@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Listing = require("./models/listing");
+const Listing = require("./models/Lisitings/listing");
 const path = require("path");
 const serverError = require("./utils/serverError");
 const methodOverride = require("method-override");
