@@ -5,10 +5,12 @@ const path = require("path");
 const serverError = require("./utils/serverError");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const flash = require("connect-flash")
 const port = 8080;
 const mongurl = "mongodb://127.0.0.1:27017/rentrover";
 const Listingroute = require("./Routes/listingRoute");
 const ReviewRouter = require("./Routes/reviewRoute");
+const session = require("express-session");
 //Connecting with database
 async function main() {
   await mongoose.connect(mongurl);
@@ -20,20 +22,39 @@ main()
   .catch((err) => {
     console.log(err);
   });
+const SessionConfiguraiton = {
+  secret:"RuddarmRenroverproject",
+  resave :false,
+  saveUninitialzed:true,
+  Cookie:{
+    expire: Date.now()+7*24*60*60*1000,
+    maxAge : 7*25*60*60*1000,
+  }
+
+}
 //Setting up port
 const app = express();
+app.use(session(SessionConfiguraiton))
+app.use(flash())
 app.set("view engine", "ejs");
 app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(flash())
 app.listen(port, () => {
   console.log(`Listining on ${port}`);
 });
 // Routeing
+
+app.use((req,res,next)=>{
+  res.locals.success=req.flash("success")
+  next();
+});
 app.get("/", (req, res) => {
   res.redirect("/listings");
+  
 });
 app.use("/listings", Listingroute.route);
 app.use("/listings/:id/review", ReviewRouter.route);

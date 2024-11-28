@@ -2,6 +2,7 @@ const express = require("express");
 const Listing = require("../models/Lisitings/listing");
 const wrapAsync = require("../utils/wrapAsync");
 const { listingSchema } = require("../schemaValidation");
+const serverError = require("../utils/serverError")
 
 const route = express.Router();
 const validateListing = (req, res, next) => {
@@ -13,30 +14,33 @@ const validateListing = (req, res, next) => {
     next();
   }
 };
-route.route("/").get(async (req, res) => {
-  const allLisitings = await Listing.find();
-  res.render("listings/index.ejs", { allLisitings });
-});
+route
+  .route("/")
+  .get(async (req, res) => {
+    const allLisitings = await Listing.find();
+    res.render("listings/index.ejs", { allLisitings });
+  })
+  .post(
+    validateListing,
+    wrapAsync(async (req, res, next) => {
+      if (!req.body.listing) next(new serverError(400, "Data is not valid"));
+      let { listing: list } = req.body;
+      let result = await new Listing(list).save();
+      req.flash("success","New listing Created")
+      res.redirect("/listings/" + result._id);
+    })
+  );
 //create route
 route.get("/new", (req, res) => {
   res.render("listings/addlisting.ejs");
 });
 //save route
-route.post(
-  "",
-  validateListing,
-  wrapAsync(async (req, res, next) => {
-    if (!req.body.listing) next(new serverError(400, "Data is not valid"));
-    let { listing: list } = req.body;
-    let result = await new Listing(list).save();
-    res.redirect("/listings/" + result._id);
-  })
-);
 
 //Show rooute
 route.get(
   "/:id",
   wrapAsync(async (req, res) => {
+    console.log(req.flash("success"))
     let { id } = req.params;
     const listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs", { listing });
