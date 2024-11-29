@@ -1,10 +1,10 @@
 <%- layout("./layouts/head.ejs") -%>
 <div class="form-container">
-  <form id="listingFrom" class="new-form" action="/listings" method="post">
+  <form id="listingFrom" class="new-form" action="/listings" method="post" data-validate>
     <div class="new-form-inner">
       <h1>Create New Listings</h1>
       <label for="listing[title]">Title</label>
-      <input name="listing[title]" placeholder="Give title to your property" />
+      <input name="listing[title]" type="text" placeholder="Give title to your property" />
       <p class="form-error-msg">Title is must required</p>
       <br />
       <label for="lisitng[Description]">Describe your property</label>
@@ -55,7 +55,7 @@
       <input type="submit" value="Save" />
     </div>
   </form>
-  <script src="/Js/formvalidate.js"></script>
+  
 
   <!-- <h1>hello</h1> -->
 </div>

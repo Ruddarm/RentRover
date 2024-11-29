@@ -5,10 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RentRover</title>
     <link rel="stylesheet" href="/Css/style.css" />
+    <link rel="stylesheet" href="/Css/alertStyle.css"/>
+    <style>
+      *{
+        box-sizing: border-box;
+        /* background-color: red; */
+      }
+      body{
+        padding: 0;
+        /* margin: 1rem; */
+      }
+    </style>
   </head>
+  
   <body>
     <%- include("../includes/navbar.ejs") %>
+    <%- include("../includes/alert.ejs") %>
     <div class="container"><%- body -%></div>
     <%- include("../includes/footer.ejs") %>
+    <script src="/Js/formvalidate.js"></script>
   </body>
 </html>

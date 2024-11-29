@@ -1,0 +1,24 @@
+<% if(success && success.length) { %>
+<div class="alertbox">
+  <div class="alertbox-msg">
+    <span><%=success[0]%></span>
+  </div>
+  <div>
+    <button id="closealert" class="alertbox-btn">
+      <img src="/close.png" alt="" srcset="" />
+    </button>
+  </div>
+</div>
+
+<% } else if (error && error.length) { %>
+<div class="alertbox error">
+  <div class="alertbox-msg">
+    <span><%=error[0]%></span>
+  </div>
+  <div>
+    <button id="closealert" class="alertbox-btn">
+      <img src="/close.png" alt="" srcset="" />
+    </button>
+  </div>
+</div>
+<% } %>

@@ -1,6 +1,8 @@
 <%- layout("./layouts/head.ejs") -%>
 <body>
-  <h1>All Listings</h1>
+  <div>
+    <h1 id="title" >All Listings</h1>
+  </div>
   <div class="listing-container">
     <% for(listing of allLisitings) {%>
     <a href="listings/<%=listing._id%>">

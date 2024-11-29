@@ -21,6 +21,9 @@ body{
     flex-direction: column;
     /* background-color :pink; */
 }
+#title{
+    margin: 0 1rem;
+}
 
 .container
 {

@@ -50,6 +50,7 @@ app.listen(port, () => {
 
 app.use((req,res,next)=>{
   res.locals.success=req.flash("success")
+  res.locals.error = req.flash("error");
   next();
 });
 app.get("/", (req, res) => {
@@ -68,7 +69,6 @@ app.get("/testing/lisiting", async (req, res) => {
     contry: "India",
   });
   let result = await Sample.save();
-  console.log(result);
 });
 
 app.all("*", (req, res, next) => {
